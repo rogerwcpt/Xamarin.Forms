@@ -51,16 +51,13 @@ namespace Xamarin.Forms.Platform.iOS
 					uiimage = null;
 				}
 
-				NSRunLoop.Main.BeginInvokeOnMainThread(() =>
+				if (target.Cell != null)
 				{
-					if (target.Cell != null)
-					{
-						target.ImageView.Image = uiimage;
-						target.SetNeedsLayout();
-					}
-					else
-						uiimage?.Dispose();
-				});
+					target.ImageView.Image = uiimage;
+					target.SetNeedsLayout();
+				}
+				else
+					uiimage?.Dispose();
 			}
 			else
 				target.ImageView.Image = null;
